@@ -1,0 +1,28 @@
+https://doc.babylonjs.com/divingDeeper/developWithBjs/npmSupport#typescript-support
+
+https://css-tricks.com/creating-your-own-gravity-and-space-simulator/
+
+https://github.com/pandadelphin/babylonjs-typescript-webpack-starter/blob/master/webpack.config.js
+
+https://www.kerbalspaceprogram.com/game/kerbal-space-program-2/
+
+https://stackoverflow.com/questions/23586195/n-body-gravity-simulation-in-javascript
+
+http://wellcaffeinated.net/PhysicsJS/docs/
+
+https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_breakout_game_Phaser/Physics
+
+https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Babylon.js
+
+https://github.com/schteppe/cannon.js/tree/master/examples
+
+https://developer.mozilla.org/en-US/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard
+
+https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_Three.js
+
+--> planets, stars:
+    https://playground.babylonjs.com/#4PHFIF#0
+    https://playground.babylonjs.com/#G3HSAW#6
+
+--> physics engine:
+    https://stackoverflow.com/questions/35026623/how-to-set-gravity-to-the-center-of-a-big-sphere-planet-in-babylon-js
