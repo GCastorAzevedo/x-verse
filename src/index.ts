@@ -24,7 +24,7 @@ const { scene } = createScene(canvas, engine)
 
 // Stuff
 
-const { stars, SPS, starSphere } = createStars(scene)
+const { SPS, systemMesh: stars } = createStars(scene)
 
 /* var makeShadows=0;
  var lod=0; */
