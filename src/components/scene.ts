@@ -33,7 +33,7 @@ export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): 
     // Light
     let light = new HemisphericLight("light", new Vector3(100, 200, 300), scene);
     light.intensity = 1;
-    light.specular = new Color3(0.95, 0.15, 0.11)
+    light.specular = Color3.White()//new Color3(0.95, 0.15, 0.11)
 
     return { scene, camera, light }
 }

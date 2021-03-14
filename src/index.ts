@@ -26,7 +26,8 @@ function createDelayedScene() {
     const { scene } = createScene(canvas, engine)
 
     // Stuff
-    const { SPS, systemMesh: stars } = createStars(scene)
+    //const { SPS, systemMesh: stars } = createStars(scene)
+    createStars(scene)
     createSun(scene)
 
 
@@ -63,7 +64,7 @@ function createDelayedScene() {
 }
 
 let scene
-setTimeout(() => {scene = createDelayedScene()}, 6000)
+setTimeout(() => {scene = createDelayedScene()}, 600)
 
 engine.runRenderLoop(() => {
     if (!scene) {

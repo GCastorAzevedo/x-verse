@@ -1,32 +1,35 @@
 import { Scene } from '@babylonjs/core/scene';
-import { Vector3 } from '@babylonjs/core/Maths/math';
+import { Vector3, Color4, Color3 } from '@babylonjs/core/Maths/math';
 import { Mesh } from "@babylonjs/core/Meshes/mesh"
 import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder'
-import * as BABYLON from "@babylonjs/core/Legacy/legacy";
+import { ParticleSystem } from '@babylonjs/core/Particles/particleSystem'
+import { Texture } from '@babylonjs/core/Materials/Textures/texture'
+import { StandardMaterial} from '@babylonjs/core/Materials/standardMaterial'
+import { SphereParticleEmitter } from '@babylonjs/core/Particles/EmitterTypes/sphereParticleEmitter'
 
 
 export function createSun(scene: Scene) {
     // Emitter object
-    var stars = BABYLON.Mesh.CreateBox("emitter", 0.01, scene);
+    var stars = Mesh.CreateBox("emitter", 0.01, scene);
 
     // Create a particle system
-    var surfaceParticles = new BABYLON.ParticleSystem("surfaceParticles", 1600, scene);
-    var flareParticles = new BABYLON.ParticleSystem("flareParticles", 20, scene);
-    var coronaParticles = new BABYLON.ParticleSystem("coronaParticles", 600, scene);
-    // var starsParticles = new BABYLON.ParticleSystem("starsParticles", 500, scene);
+    var surfaceParticles = new ParticleSystem("surfaceParticles", 1600, scene);
+    var flareParticles = new ParticleSystem("flareParticles", 20, scene);
+    var coronaParticles = new ParticleSystem("coronaParticles", 600, scene);
+    // var starsParticles = new ParticleSystem("starsParticles", 500, scene);
 
     // Texture of each particle
-    surfaceParticles.particleTexture = new BABYLON.Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunSurface.png", scene);
-    flareParticles.particleTexture = new BABYLON.Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunFlare.png", scene);
-    coronaParticles.particleTexture = new BABYLON.Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
-    // starsParticles.particleTexture = new BABYLON.Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
+    surfaceParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunSurface.png", scene);
+    flareParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunFlare.png", scene);
+    coronaParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
+    // starsParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
 
     // Create core sphere
-    var coreSphere = BABYLON.MeshBuilder.CreateSphere("coreSphere", { diameter: 2.01, segments: 64 }, scene);
+    var coreSphere = MeshBuilder.CreateSphere("coreSphere", { diameter: 2.01, segments: 64 }, scene);
 
     // Create core material
-    var coreMat = new BABYLON.StandardMaterial("coreMat", scene)
-    coreMat.emissiveColor = new BABYLON.Color3(0.3773, 0.0930, 0.0266);
+    var coreMat = new StandardMaterial("coreMat", scene)
+    coreMat.emissiveColor = new Color3(0.3773, 0.0930, 0.0266);
 
     // Assign core material to sphere
     coreSphere.material = coreMat;
@@ -52,14 +55,14 @@ export function createSun(scene: Scene) {
     coronaParticles.maxInitialRotation = 2 * Math.PI;
 
     // Where the sun particles come from
-    var sunEmitter = new BABYLON.SphereParticleEmitter();
+    var sunEmitter = new SphereParticleEmitter();
     sunEmitter.radius = 1;
     sunEmitter.radiusRange = 0; // emit only from shape surface
 
-    // Where the stars particles come from
-    var starsEmitter = new BABYLON.SphereParticleEmitter();
-    starsEmitter.radius = 20;
-    starsEmitter.radiusRange = 0; // emit only from shape surface
+    // // Where the stars particles come from
+    // var starsEmitter = new SphereParticleEmitter();
+    // starsEmitter.radius = 20;
+    // starsEmitter.radiusRange = 0; // emit only from shape surface
 
     // Assign particles to emitters
     surfaceParticles.emitter = coreSphere; // the starting object, the emitter
@@ -75,22 +78,22 @@ export function createSun(scene: Scene) {
     // starsParticles.particleEmitterType = starsEmitter;
 
     // // Random starting color
-    // starsParticles.color1 = new BABYLON.Color4(0.898, 0.737, 0.718, 1.0);
-    // starsParticles.color2 = new BABYLON.Color4(0.584, 0.831, 0.894, 1.0);
+    // starsParticles.color1 = new Color4(0.898, 0.737, 0.718, 1.0);
+    // starsParticles.color2 = new Color4(0.584, 0.831, 0.894, 1.0);
 
     // Color gradient over time
-    surfaceParticles.addColorGradient(0, new BABYLON.Color4(0.8509, 0.4784, 0.1019, 0.0));
-    surfaceParticles.addColorGradient(0.4, new BABYLON.Color4(0.6259, 0.3056, 0.0619, 0.5));
-    surfaceParticles.addColorGradient(0.5, new BABYLON.Color4(0.6039, 0.2887, 0.0579, 0.5));
-    surfaceParticles.addColorGradient(1.0, new BABYLON.Color4(0.3207, 0.0713, 0.0075, 0.0));
+    surfaceParticles.addColorGradient(0, new Color4(0.8509, 0.4784, 0.1019, 0.0));
+    surfaceParticles.addColorGradient(0.4, new Color4(0.6259, 0.3056, 0.0619, 0.5));
+    surfaceParticles.addColorGradient(0.5, new Color4(0.6039, 0.2887, 0.0579, 0.5));
+    surfaceParticles.addColorGradient(1.0, new Color4(0.3207, 0.0713, 0.0075, 0.0));
 
-    flareParticles.addColorGradient(0, new BABYLON.Color4(1, 0.9612, 0.5141, 0.0));
-    flareParticles.addColorGradient(0.25, new BABYLON.Color4(0.9058, 0.7152, 0.3825, 1.0));
-    flareParticles.addColorGradient(1.0, new BABYLON.Color4(0.6320, 0.0, 0.0, 0.0));
+    flareParticles.addColorGradient(0, new Color4(1, 0.9612, 0.5141, 0.0));
+    flareParticles.addColorGradient(0.25, new Color4(0.9058, 0.7152, 0.3825, 1.0));
+    flareParticles.addColorGradient(1.0, new Color4(0.6320, 0.0, 0.0, 0.0));
 
-    coronaParticles.addColorGradient(0, new BABYLON.Color4(0.8509, 0.4784, 0.1019, 0.0));
-    coronaParticles.addColorGradient(0.5, new BABYLON.Color4(0.6039, 0.2887, 0.0579, 0.12));
-    coronaParticles.addColorGradient(1.0, new BABYLON.Color4(0.3207, 0.0713, 0.0075, 0.0));
+    coronaParticles.addColorGradient(0, new Color4(0.8509, 0.4784, 0.1019, 0.0));
+    coronaParticles.addColorGradient(0.5, new Color4(0.6039, 0.2887, 0.0579, 0.12));
+    coronaParticles.addColorGradient(1.0, new Color4(0.3207, 0.0713, 0.0075, 0.0));
 
     // Size of each particle (random between...
     surfaceParticles.minSize = 0.4;
@@ -136,16 +139,16 @@ export function createSun(scene: Scene) {
     // starsParticles.maxEmitPower = 0.0;
 
     // Blend mode : BLENDMODE_ONEONE, BLENDMODE_STANDARD, or BLENDMODE_ADD
-    surfaceParticles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
-    flareParticles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
-    coronaParticles.blendMode = BABYLON.ParticleSystem.BLENDMODE_ADD;
-    // starsParticles.blendMode = BABYLON.ParticleSystem.BLENDMODE_STANDARD;
+    surfaceParticles.blendMode = ParticleSystem.BLENDMODE_ADD;
+    flareParticles.blendMode = ParticleSystem.BLENDMODE_ADD;
+    coronaParticles.blendMode = ParticleSystem.BLENDMODE_ADD;
+    // starsParticles.blendMode = ParticleSystem.BLENDMODE_STANDARD;
 
     // Set the gravity of all particles
-    surfaceParticles.gravity = new BABYLON.Vector3(0, 0, 0);
-    flareParticles.gravity = new BABYLON.Vector3(0, 0, 0);
-    coronaParticles.gravity = new BABYLON.Vector3(0, 0, 0);
-    // starsParticles.gravity = new BABYLON.Vector3(0, 0, 0);
+    surfaceParticles.gravity = new Vector3(0, 0, 0);
+    flareParticles.gravity = new Vector3(0, 0, 0);
+    coronaParticles.gravity = new Vector3(0, 0, 0);
+    // starsParticles.gravity = new Vector3(0, 0, 0);
 
     // Angular speed, in radians
     surfaceParticles.minAngularSpeed = -0.4;

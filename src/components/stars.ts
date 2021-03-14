@@ -1,84 +1,59 @@
 import { Scene } from '@babylonjs/core/scene';
-import { Vector3 } from '@babylonjs/core/Maths/math';
+import { Vector3, Color4, Matrix } from '@babylonjs/core/Maths/math';
 import { Mesh } from "@babylonjs/core/Meshes/mesh"
-import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder'
-import * as BABYLON from "@babylonjs/core/Legacy/legacy";
+import { ParticleSystem } from '@babylonjs/core/Particles/particleSystem'
+import { Texture } from '@babylonjs/core/Materials/Textures/texture'
+import { SphereParticleEmitter } from '@babylonjs/core/Particles/EmitterTypes/sphereParticleEmitter'
+import { GlowLayer } from '@babylonjs/core/Layers/glowLayer'
+import { Particle, RandomNumberBlock } from '@babylonjs/core';
 
-interface IConstellationOutput {
-    SPS: BABYLON.SolidParticleSystem,
-    systemMesh: Mesh,
-    baseModels: Mesh[]
-}
+export function createStars(scene: Scene) {
+    // ParticleSystem  SphereParticleEmitter
+    const baseStarModel = Mesh.CreateBox("emitter", 0.01, scene)
+    const starsParticles = new ParticleSystem("starParticles", 7000, scene)
+    // const gl = new GlowLayer("starGlow", scene, { blurKernelSize: 64 });
 
-export function createStars(scene: Scene): IConstellationOutput {
-    ////////////////////////////////////////////////////////////////////////////////////
-    /* Background stars */
-    ////////////////////////////////////////////////////////////////////////////////////
-    const nb = 10000;
-    const fact = 20000
-    const minDistance = 10000
-    const starDiameter = 15
-
-    const indicatorFunction = () => Math.random() < .5 ? -1 : 1
-    const getPosition = () => minDistance + (Math.random() * (fact * indicatorFunction()))
-    const starPosition = (particle, i, s) => {
-        particle.position = new Vector3(getPosition(), getPosition(), getPosition())
-        particle.color = new BABYLON.Color4(1, 1, 0.3, 1.0)
-        //gl.addIncludedOnlyMesh(particle)
-        //gl.intensity = 10
+    starsParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene)
+    
+    const minDistance = 0
+    const scale = 40
+    const indicatorFunction = () => Math.random() < .5 ? -1: 1
+    const getPosition = () => minDistance + (Math.random() * (scale * indicatorFunction()))
+    const getRandomPosition = () => [getPosition(), getPosition(), getPosition()]
+    starsParticles.startPositionFunction = (worldMatrix: Matrix, positionToUpdate: Vector3, particle: Particle, isLocal: boolean): void => {
+        const [x, y, z] = getRandomPosition()
+        Vector3.TransformCoordinatesFromFloatsToRef(x, y, z, worldMatrix, positionToUpdate)
     }
 
-    const gl = new BABYLON.GlowLayer("starGlow", scene, { blurKernelSize: 64 });
+    const starsEmitter = new SphereParticleEmitter()
+    starsEmitter.radius = 30
+    starsEmitter.radiusRange = 1
+    starsEmitter.startPositionFunction = (worldMatrix: Matrix, positionToUpdate: Vector3, particle: Particle, isLocal: boolean): void => {
+        const [x, y, z] = getRandomPosition()
+        Vector3.TransformCoordinatesFromFloatsToRef(x, y, z, worldMatrix, positionToUpdate)
+    }
 
-    // Red stars
-    const redMaterial = new BABYLON.StandardMaterial("redStarsMaterial", scene)
-    redMaterial.emissiveColor = BABYLON.Color3.Red()
-    const redStar = MeshBuilder.CreateSphere("s", { segments: 6, diameter: starDiameter }, scene)
-    redStar.position = new BABYLON.Vector3(1000, 1000, 1000)
-    redStar.material = redMaterial
+    starsParticles.emitter = baseStarModel
+    // starsParticles.emitter = Vector3.Zero()
+    starsParticles.particleEmitterType = starsEmitter
 
-    // Blue stars
-    const blueMaterial = new BABYLON.StandardMaterial("blueStarsMaterial", scene)
-    blueMaterial.emissiveColor = new BABYLON.Color3(0.7, 0.96, 1)
-    blueMaterial.specularColor = BABYLON.Color3.White()
-    const blueStar = MeshBuilder.CreateSphere("s", { segments: 6, diameter: starDiameter }, scene)
-    blueStar.position = new BABYLON.Vector3(1000, 1000, 1000)
-    blueStar.material = blueMaterial
+    starsParticles.color1 = new Color4(0.898, 0.737, 0.718, 1.0);
+    starsParticles.color2 = new Color4(0.584, 0.831, 0.894, 1.0);
+    // starsParticles.minEmitBox = new Vector3(10, 10, 10)
+    // starsParticles.maxEmitBox = new Vector3(100, 100, 100)
+    starsParticles.minLifeTime = 999999
+    starsParticles.maxLifeTime = 999999
+    starsParticles.manualEmitCount = 500;
+    starsParticles.maxEmitPower = 0.0;
+    starsParticles.minSize = 0.15//0.15;
+    starsParticles.maxSize = .7//0.3;
+    starsParticles.blendMode = ParticleSystem.BLENDMODE_STANDARD
+    starsParticles.gravity = new Vector3(0, 0, 0)
+    starsParticles.minAngularSpeed = 0.0
+    starsParticles.maxAngularSpeed = 0.0
+    starsParticles.isBillboardBased = true
+    starsParticles.renderingGroupId = 0;
+    starsParticles.start()
 
-    // Yellow stars
-    /*this.mat.diffuseTexture = new BABYLON.Texture("textures/misc.jpg", scene);
-    this.mat.emissiveTexture = this.mat.diffuseTexture; */
-    const yellowMaterial = new BABYLON.StandardMaterial("yellowStarMaterial", scene)
-    yellowMaterial.emissiveColor = new BABYLON.Color3(1, 1, 0.6)
-    yellowMaterial.specularColor = BABYLON.Color3.White()
-    const yellowStar = MeshBuilder.CreateSphere("s", { segments: 6, diameter: starDiameter }, scene)
-    yellowStar.position = new BABYLON.Vector3(1000, 1000, 1000)
-    yellowStar.material = yellowMaterial
-
-    // Orange stars
-    const orangeMaterial = new BABYLON.StandardMaterial("orangeStarMaterial", scene)
-    orangeMaterial.emissiveColor = new BABYLON.Color3(.96, .75, .26)
-    orangeMaterial.specularColor = BABYLON.Color3.White()
-    const orangeStar = MeshBuilder.CreateSphere("s", { segments: 6, diameter: starDiameter }, scene)
-    orangeStar.position = new BABYLON.Vector3(1000, 1000, 1000)
-    orangeStar.material = orangeMaterial
-
-    // White stars
-    const whiteMaterial = new BABYLON.StandardMaterial("whiteStarMaterial", scene)
-    whiteMaterial.emissiveColor = BABYLON.Color3.White()
-    whiteMaterial.specularColor = BABYLON.Color3.White()
-    const whiteStar = MeshBuilder.CreateSphere("s", { segments: 6, diameter: starDiameter }, scene)
-    whiteStar.position = new BABYLON.Vector3(1000, 1000, 1000)
-    whiteStar.material = whiteMaterial
-
-    const SPS = new BABYLON.SolidParticleSystem('SPS', scene, { useModelMaterial: true, updatable: false })
-    //SPS.addShape(redStar, nb, { positionFunction: starPosition })
-    SPS.addShape(blueStar, nb, { positionFunction: starPosition })
-    SPS.addShape(yellowStar, nb, { positionFunction: starPosition })
-    SPS.addShape(orangeStar, nb, { positionFunction: starPosition })
-    SPS.addShape(whiteStar, nb, { positionFunction: starPosition })
-    const systemMesh = SPS.buildMesh()
-    // starSphere.dispose()
-    ////////////////////////////////////////////////////////////////////////////////////
-    return { SPS, systemMesh, baseModels: [redStar, blueStar, yellowStar, orangeStar, whiteStar] }
+    return scene;
 }
