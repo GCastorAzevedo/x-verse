@@ -10,6 +10,7 @@ import '@babylonjs/core/Loading/loadingScreen'
 import { createStars } from './components/stars'
 import { createScene } from './components/scene'
 import { createSun } from './components/sun'
+import { NebulaBackground } from './components/nebula'
 
 const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 
@@ -21,6 +22,9 @@ function createDelayedScene() {
     const { scene } = createScene(canvas, engine)
 
     // Stuff
+
+    /* Galaxy Background */
+    const nebula = new NebulaBackground(scene)
     //const { SPS, systemMesh: stars } = createStars(scene)
     createStars(scene)
     createSun(scene)

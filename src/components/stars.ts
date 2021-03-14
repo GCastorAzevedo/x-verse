@@ -5,7 +5,7 @@ import { ParticleSystem } from '@babylonjs/core/Particles/particleSystem'
 import { Texture } from '@babylonjs/core/Materials/Textures/texture'
 import { SphereParticleEmitter } from '@babylonjs/core/Particles/EmitterTypes/sphereParticleEmitter'
 import { GlowLayer } from '@babylonjs/core/Layers/glowLayer'
-import { Particle, RandomNumberBlock } from '@babylonjs/core';
+import { Particle } from '@babylonjs/core';
 
 export function createStars(scene: Scene) {
     // ParticleSystem  SphereParticleEmitter

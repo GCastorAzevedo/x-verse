@@ -28,3 +28,13 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
 
 --> physics engine:
     https://stackoverflow.com/questions/35026623/how-to-set-gravity-to-the-center-of-a-big-sphere-planet-in-babylon-js
+
+--> Loading screen error: https://forum.babylonjs.com/t/import-loadingscreen-or-set-defaultloadingscreenfactory/1886
+
+--> Galaxies, planets, solar systems:
+    https://playground.babylonjs.com/#KEKCLV#73
+    https://playground.babylonjs.com/#GE2LT9#1
+    https://playground.babylonjs.com/#FFNMSP#3
+    https://playground.babylonjs.com/#T0LWSV#68
+    https://www.babylonjs-playground.com/#2FPT1A#157
+    https://www.babylonjs-playground.com/#2FPT1A#158
