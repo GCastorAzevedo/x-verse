@@ -1,9 +1,9 @@
 import { Scene } from '@babylonjs/core/scene';
-import { Color3, Vector3 } from '@babylonjs/core/Maths/math';
+import { Engine } from '@babylonjs/core/Engines/engine'
+import { Color3, Color4, Vector3 } from '@babylonjs/core/Maths/math';
 import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
 import { UniversalCamera } from '@babylonjs/core/Cameras/universalCamera'
 import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight'
-import * as BABYLON from "@babylonjs/core/Legacy/legacy";
 
 import "@babylonjs/core/Meshes/meshBuilder";
 
@@ -13,12 +13,12 @@ interface ISceneOutput {
     light: HemisphericLight
 }
 
-export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): ISceneOutput {
+export function createScene(canvas: HTMLCanvasElement, engine: Engine): ISceneOutput {
 
     // Scene
     const scene = new Scene(engine);
 
-    scene.clearColor = new BABYLON.Color4(0, 0, 0, 1)
+    scene.clearColor = new Color4(0, 0, 0, 1)
 
     // Camera
     const camera = new FreeCamera("xverse", new Vector3(0, 5, -10), scene)

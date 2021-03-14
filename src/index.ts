@@ -1,13 +1,7 @@
 import { Engine } from '@babylonjs/core/Engines/engine';
-import { Scene } from '@babylonjs/core/scene';
-import { Color3, Vector3 } from '@babylonjs/core/Maths/math';
-import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera';
-import { UniversalCamera } from '@babylonjs/core/Cameras/universalCamera'
-import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight'
+import { Vector3 } from '@babylonjs/core/Maths/math';
 import { Mesh } from "@babylonjs/core/Meshes/mesh"
 import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
-import { TerrainMaterial } from '@babylonjs/materials/terrain'
-import * as BABYLON from "@babylonjs/core/Legacy/legacy";
 import { GridMaterial } from '@babylonjs/materials/grid'
 
 import "@babylonjs/core/Meshes/meshBuilder";
