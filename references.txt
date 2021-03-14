@@ -24,5 +24,7 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
     https://playground.babylonjs.com/#4PHFIF#0
     https://playground.babylonjs.com/#G3HSAW#6
 
+--> sun: https://www.babylonjs-playground.com/#YSQLI3#0
+
 --> physics engine:
     https://stackoverflow.com/questions/35026623/how-to-set-gravity-to-the-center-of-a-big-sphere-planet-in-babylon-js

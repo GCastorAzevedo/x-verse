@@ -14,6 +14,7 @@ import "@babylonjs/core/Meshes/meshBuilder";
 
 import { createStars } from './components/stars'
 import { createScene } from './components/scene'
+import { createSun } from './components/sun'
 
 const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 
@@ -25,6 +26,8 @@ const { scene } = createScene(canvas, engine)
 // Stuff
 
 const { SPS, systemMesh: stars } = createStars(scene)
+createSun(scene)
+
 
 /* var makeShadows=0;
  var lod=0; */
