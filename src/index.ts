@@ -19,46 +19,58 @@ import { createSun } from './components/sun'
 const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 
 const engine = new Engine(canvas);
+//engine.loadingScreen = new BABYLON.DefaultLoadingScreen(canvas, "", "black")
 
-// Scene
-const { scene } = createScene(canvas, engine)
+function createDelayedScene() {
+    // Scene
+    const { scene } = createScene(canvas, engine)
 
-// Stuff
+    // Stuff
+    const { SPS, systemMesh: stars } = createStars(scene)
+    createSun(scene)
 
-const { SPS, systemMesh: stars } = createStars(scene)
-createSun(scene)
 
+    /* var makeShadows=0;
+     var lod=0; */
 
-/* var makeShadows=0;
- var lod=0; */
+    let material = new GridMaterial("grid", scene);
 
-let material = new GridMaterial("grid", scene);
+    // base ground
+    //const ground = Mesh.CreateGround("ground-1", 600, 600, 200, scene);
+    const ground = MeshBuilder.CreateGround("ground", { width: 10, height: 10 })
+    ground.material = material;
 
-// base ground
-//const ground = Mesh.CreateGround("ground-1", 600, 600, 200, scene);
-const ground = MeshBuilder.CreateGround("ground", { width: 10, height: 10 })
-ground.material = material;
+    let sphere = Mesh.CreateSphere("sphere-1", 16, 1, scene);
 
-let sphere = Mesh.CreateSphere("sphere-1", 16, 1, scene);
+    sphere.position = new Vector3(2, 4, 0)
+    sphere.scaling.x = 1
+    sphere.scaling.y = 1
+    sphere.scaling.z = 1
 
-sphere.position = new Vector3(2, 4, 0)
-sphere.scaling.x = 1
-sphere.scaling.y = 1
-sphere.scaling.z = 1
+    sphere.material = material;
 
-sphere.material = material;
+    /* const skybox = Mesh.CreateBox("BackgroundSkybox", 500, scene, undefined, Mesh.BACKSIDE);
+        
+    // Create and tweak the background material.
+    const backgroundMaterial = new BABYLON.BackgroundMaterial("backgroundMaterial", scene);
+    backgroundMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/TropicalSunnyDay", scene);
+    backgroundMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+    skybox.material = backgroundMaterial; 
+    var earthMaterial = new BABYLON.StandardMaterial("earthMaterial", scene);
+        earth.material = earthMaterial;
+        earthMaterial.ambientColor = new BABYLON.Color3(.8, .8, 1); */
+    return scene
+}
 
-/* const skybox = Mesh.CreateBox("BackgroundSkybox", 500, scene, undefined, Mesh.BACKSIDE);
-    
-// Create and tweak the background material.
-const backgroundMaterial = new BABYLON.BackgroundMaterial("backgroundMaterial", scene);
-backgroundMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/TropicalSunnyDay", scene);
-backgroundMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-skybox.material = backgroundMaterial; 
-var earthMaterial = new BABYLON.StandardMaterial("earthMaterial", scene);
-    earth.material = earthMaterial;
-    earthMaterial.ambientColor = new BABYLON.Color3(.8, .8, 1); */
+let scene
+setTimeout(() => {scene = createDelayedScene()}, 6000)
 
 engine.runRenderLoop(() => {
-    scene.render();
+    if (!scene) {
+        engine.displayLoadingUI()
+    }
+    if (scene) {
+        scene.render();
+        engine.hideLoadingUI()
+    }
 })
