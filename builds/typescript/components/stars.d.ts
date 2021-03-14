@@ -1,6 +1,10 @@
+import { Scene } from '@babylonjs/core/scene';
+import { Mesh } from "@babylonjs/core/Meshes/mesh";
 import * as BABYLON from "@babylonjs/core/Legacy/legacy";
-export declare function createStars(scene: any): {
+interface IConstellationOutput {
     SPS: BABYLON.SolidParticleSystem;
-    stars: BABYLON.Mesh;
-    starSphere: BABYLON.Mesh;
-};
+    systemMesh: Mesh;
+    baseModels: Mesh[];
+}
+export declare function createStars(scene: Scene): IConstellationOutput;
+export {};
