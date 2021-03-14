@@ -34,11 +34,10 @@ function createDelayedScene() {
      var lod=0; */
 
     let material = new GridMaterial("grid", scene);
-
-    // base ground
-    //const ground = Mesh.CreateGround("ground-1", 600, 600, 200, scene);
-    const ground = MeshBuilder.CreateGround("ground", { width: 10, height: 10 })
-    ground.material = material;
+    // // base ground
+    // //const ground = Mesh.CreateGround("ground-1", 600, 600, 200, scene);
+    // const ground = MeshBuilder.CreateGround("ground", { width: 10, height: 10 })
+    // ground.material = material;
 
     let sphere = Mesh.CreateSphere("sphere-1", 16, 1, scene);
 
