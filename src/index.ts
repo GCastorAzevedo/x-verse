@@ -5,6 +5,7 @@ import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder';
 import { GridMaterial } from '@babylonjs/materials/grid'
 
 import "@babylonjs/core/Meshes/meshBuilder";
+import '@babylonjs/core/Loading/loadingScreen'
 
 import { createStars } from './components/stars'
 import { createScene } from './components/scene'
@@ -58,7 +59,7 @@ function createDelayedScene() {
 }
 
 let scene
-setTimeout(() => {scene = createDelayedScene()}, 600)
+setTimeout(() => { scene = createDelayedScene() }, 600)
 
 engine.runRenderLoop(() => {
     if (!scene) {

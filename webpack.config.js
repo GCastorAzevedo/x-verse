@@ -42,6 +42,7 @@ module.exports = {
                 }
             }
         }
+        // usedExports: true,
     },
     output: {
         filename: '[name].bundle.js',
