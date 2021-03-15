@@ -38,3 +38,8 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
     https://playground.babylonjs.com/#T0LWSV#68
     https://www.babylonjs-playground.com/#2FPT1A#157
     https://www.babylonjs-playground.com/#2FPT1A#158
+    https://www.babylonjs-playground.com/#YSQLI3#0
+    https://playground.babylonjs.com/#LMJG4M#0
+    https://playground.babylonjs.com/#SFPML7#4
+
+--> emitters: https://playground.babylonjs.com/#08YT34#4

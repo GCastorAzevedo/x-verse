@@ -21,7 +21,7 @@ export function createScene(canvas: HTMLCanvasElement, engine: Engine): ISceneOu
     scene.clearColor = new Color4(0, 0, 0, 1)
 
     // Camera
-    const camera = new FreeCamera("xverse", new Vector3(0, -1, -10), scene)
+    const camera = new FreeCamera("xverse", new Vector3(0, -1, -30), scene)
     /* var camera = new BABYLON.ArcRotateCamera("camera1", 0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
      camera.setPosition(new BABYLON.Vector3(0, 1400, 50));
      camera.wheelPrecision = 1; */
@@ -33,7 +33,7 @@ export function createScene(canvas: HTMLCanvasElement, engine: Engine): ISceneOu
     // Light
     let light = new HemisphericLight("light", new Vector3(100, 200, 300), scene);
     light.intensity = 1;
-    light.specular = Color3.White()//new Color3(0.95, 0.15, 0.11)
+    light.specular = Color3.White()//new Color3(0.95, 0.15, 0.11) 
 
     return { scene, camera, light }
 }
