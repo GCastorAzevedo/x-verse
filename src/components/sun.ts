@@ -16,13 +16,13 @@ export function createSun(scene: Scene) {
     var surfaceParticles = new ParticleSystem("surfaceParticles", 1600, scene);
     var flareParticles = new ParticleSystem("flareParticles", 20, scene);
     var coronaParticles = new ParticleSystem("coronaParticles", 600, scene);
-    // var starsParticles = new ParticleSystem("starsParticles", 500, scene);
+    var starsParticles = new ParticleSystem("starsParticles", 500, scene);
 
     // Texture of each particle
     surfaceParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunSurface.png", scene);
     flareParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_SunFlare.png", scene);
     coronaParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
-    // starsParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
+    starsParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene);
 
     // Create core sphere
     var coreSphere = MeshBuilder.CreateSphere("coreSphere", { diameter: 2.01, segments: 64 }, scene);
@@ -60,9 +60,9 @@ export function createSun(scene: Scene) {
     sunEmitter.radiusRange = 0; // emit only from shape surface
 
     // // Where the stars particles come from
-    // var starsEmitter = new SphereParticleEmitter();
-    // starsEmitter.radius = 20;
-    // starsEmitter.radiusRange = 0; // emit only from shape surface
+    var starsEmitter = new SphereParticleEmitter();
+    starsEmitter.radius = 20;
+    starsEmitter.radiusRange = 0; // emit only from shape surface
 
     // Assign particles to emitters
     surfaceParticles.emitter = coreSphere; // the starting object, the emitter
@@ -74,12 +74,12 @@ export function createSun(scene: Scene) {
     coronaParticles.emitter = coreSphere; // the starting object, the emitter
     coronaParticles.particleEmitterType = sunEmitter;
 
-    // starsParticles.emitter = stars; // the starting object, the emitter
-    // starsParticles.particleEmitterType = starsEmitter;
+    starsParticles.emitter = stars; // the starting object, the emitter
+    starsParticles.particleEmitterType = starsEmitter;
 
-    // // Random starting color
-    // starsParticles.color1 = new Color4(0.898, 0.737, 0.718, 1.0);
-    // starsParticles.color2 = new Color4(0.584, 0.831, 0.894, 1.0);
+    // Random starting color
+    starsParticles.color1 = new Color4(0.898, 0.737, 0.718, 1.0);
+    starsParticles.color2 = new Color4(0.584, 0.831, 0.894, 1.0);
 
     // Color gradient over time
     surfaceParticles.addColorGradient(0, new Color4(0.8509, 0.4784, 0.1019, 0.0));
@@ -109,8 +109,8 @@ export function createSun(scene: Scene) {
     coronaParticles.maxScaleX = 1.2;
     coronaParticles.maxScaleY = 3.0;
 
-    // starsParticles.minSize = 0.15;
-    // starsParticles.maxSize = 0.3;
+    starsParticles.minSize = 0.15;
+    starsParticles.maxSize = 0.3;
 
     // Size over lifetime
     flareParticles.addSizeGradient(0, 0);
@@ -126,17 +126,17 @@ export function createSun(scene: Scene) {
     coronaParticles.minLifeTime = 2.0;
     coronaParticles.maxLifeTime = 2.0;
 
-    // starsParticles.minLifeTime = 999999;
-    // starsParticles.maxLifeTime = 999999;
+    starsParticles.minLifeTime = 999999;
+    starsParticles.maxLifeTime = 999999;
 
     // Emission rate
     surfaceParticles.emitRate = 200;
     flareParticles.emitRate = 1;
     coronaParticles.emitRate = 300;
 
-    // // Burst rate
-    // starsParticles.manualEmitCount = 500;
-    // starsParticles.maxEmitPower = 0.0;
+    // Burst rate
+    starsParticles.manualEmitCount = 500;
+    starsParticles.maxEmitPower = 0.0;
 
     // Blend mode : BLENDMODE_ONEONE, BLENDMODE_STANDARD, or BLENDMODE_ADD
     surfaceParticles.blendMode = ParticleSystem.BLENDMODE_ADD;
@@ -160,8 +160,8 @@ export function createSun(scene: Scene) {
     coronaParticles.minAngularSpeed = 0.0;
     coronaParticles.maxAngularSpeed = 0.0;
 
-    // starsParticles.minAngularSpeed = 0.0;
-    // starsParticles.maxAngularSpeed = 0.0;
+    starsParticles.minAngularSpeed = 0.0;
+    starsParticles.maxAngularSpeed = 0.0;
 
     // Speed
     surfaceParticles.minEmitPower = 0;
@@ -174,21 +174,21 @@ export function createSun(scene: Scene) {
     coronaParticles.minEmitPower = 0.0;
     coronaParticles.maxEmitPower = 0.0;
 
-    // starsParticles.minEmitPower = 0.0;
-    // starsParticles.maxAngularSpeed = 0.0;
+    starsParticles.minEmitPower = 0.0;
+    starsParticles.maxAngularSpeed = 0.0;
 
     // No billboard
     surfaceParticles.isBillboardBased = false;
     flareParticles.isBillboardBased = true;
     coronaParticles.isBillboardBased = true;
-    // starsParticles.isBillboardBased = true;
+    starsParticles.isBillboardBased = true;
 
     // Render Order
-    // starsParticles.renderingGroupId = 0;
-    coronaParticles.renderingGroupId = 1;
-    flareParticles.renderingGroupId = 2;
-    surfaceParticles.renderingGroupId = 3;
-    coreSphere.renderingGroupId = 3;
+    starsParticles.renderingGroupId = 0;
+    coronaParticles.renderingGroupId = 0 //1;
+    flareParticles.renderingGroupId = 0 //2;
+    surfaceParticles.renderingGroupId = 0 //3;
+    coreSphere.renderingGroupId = 0 //3;
 
     // Start the particle system
     surfaceParticles.start();

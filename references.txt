@@ -32,6 +32,7 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
 --> Loading screen error: https://forum.babylonjs.com/t/import-loadingscreen-or-set-defaultloadingscreenfactory/1886
 
 --> Galaxies, planets, solar systems:
+    https://www.babylonjs-playground.com/#MX2Z99#15
     https://playground.babylonjs.com/#KEKCLV#73
     https://playground.babylonjs.com/#GE2LT9#1
     https://playground.babylonjs.com/#FFNMSP#3
@@ -41,5 +42,9 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
     https://www.babylonjs-playground.com/#YSQLI3#0
     https://playground.babylonjs.com/#LMJG4M#0
     https://playground.babylonjs.com/#SFPML7#4
+    https://forum.babylonjs.com/t/moving-through-particles/6842/3
 
+--> mesh particles intersection problem: https://forum.babylonjs.com/t/intersection-between-a-sps-from-au-digested-mesh-and-a-mesh/5210
+    https://www.babylonjs-playground.com/#MX2Z99#15
+    
 --> emitters: https://playground.babylonjs.com/#08YT34#4
