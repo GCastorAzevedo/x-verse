@@ -21,7 +21,7 @@ export function createScene(canvas: HTMLCanvasElement, engine: Engine): ISceneOu
     scene.clearColor = new Color4(0, 0, 0, 1)
 
     // Camera
-    const camera = new FreeCamera("xverse", new Vector3(0, -1, -30), scene)
+    const camera = new FreeCamera("xverse", new Vector3(0, -1, -20), scene)
     /* var camera = new BABYLON.ArcRotateCamera("camera1", 0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
      camera.setPosition(new BABYLON.Vector3(0, 1400, 50));
      camera.wheelPrecision = 1; */
