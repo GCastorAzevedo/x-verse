@@ -48,7 +48,4 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, distFolder)
     }
-    /* externals: {
-        cannon: 'CANNON' //cannonjs engine
-    } */
 }

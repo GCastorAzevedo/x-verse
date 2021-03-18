@@ -16,7 +16,7 @@ export function createStars(scene: Scene) {
     starsParticles.particleTexture = new Texture("https://raw.githubusercontent.com/PatrickRyanMS/BabylonJStextures/master/ParticleSystems/Sun/T_Star.png", scene)
     
     const minDistance = 0
-    const scale = 40
+    const scale = 200
     const indicatorFunction = () => Math.random() < .5 ? -1: 1
     const getPosition = () => minDistance + (Math.random() * (scale * indicatorFunction()))
     const getRandomPosition = () => [getPosition(), getPosition(), getPosition()]
@@ -45,8 +45,8 @@ export function createStars(scene: Scene) {
     starsParticles.maxLifeTime = 999999
     starsParticles.manualEmitCount = 500;
     starsParticles.maxEmitPower = 0.0;
-    starsParticles.minSize = 0.15//0.15;
-    starsParticles.maxSize = .7//0.3;
+    starsParticles.minSize = 1.15//0.15;
+    starsParticles.maxSize = 5.7//0.3;
     starsParticles.blendMode = ParticleSystem.BLENDMODE_STANDARD
     starsParticles.gravity = new Vector3(0, 0, 0)
     starsParticles.minAngularSpeed = 0.0

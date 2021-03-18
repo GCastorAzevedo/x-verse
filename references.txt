@@ -46,5 +46,19 @@ https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building
 
 --> mesh particles intersection problem: https://forum.babylonjs.com/t/intersection-between-a-sps-from-au-digested-mesh-and-a-mesh/5210
     https://www.babylonjs-playground.com/#MX2Z99#15
-    
+
 --> emitters: https://playground.babylonjs.com/#08YT34#4
+
+--> about star constellations: https://www.html5gamedevs.com/topic/30627-making-stars-bright-enough-to-see-from-lightyears-away/
+    https://forum.babylonjs.com/t/best-practices-for-a-skydome-with-92k-unique-stars-with-different-sizes-and-colors/10629/3
+
+--> Oimo global variable issue: https://forum.babylonjs.com/t/using-oimo-with-typescript-commonjs/3225
+
+--> Adding gravity: https://stackoverflow.com/questions/35026623/how-to-set-gravity-to-the-center-of-a-big-sphere-planet-in-babylon-js
+    https://playground.babylonjs.com/#PDDS45#7
+    https://doc.babylonjs.com/typedoc/classes/babylon.physicshelper#gravitationalfield
+    https://doc.babylonjs.com/divingDeeper/physics/forces
+
+--> gravitaional field: https://playground.babylonjs.com/#UZHINX
+    https://www.babylonjs.com.cn/how_to/using_the_physics_engine.html
+    https://playground.babylonjs.com/#PDDS45#7
